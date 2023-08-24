@@ -31,9 +31,23 @@ namespace webapi.locadora.Repositories
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Cadastra um novo gênero
+        /// </summary>
+        /// <param name="novoGenero">Um objeto de gênero</param>
         public void Cadastrar(GeneroDomain novoGenero)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(StringConexao))
+            {
+                string query = $"INSERT INTO Genero VALUES ('" + novoGenero.Nome + "')";
+
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         public void Deletar(int id)
@@ -57,7 +71,7 @@ namespace webapi.locadora.Repositories
 
                 // Abre a conexão
                 connection.Open();
-
+               
                 // O comando SQL a ser executado
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
