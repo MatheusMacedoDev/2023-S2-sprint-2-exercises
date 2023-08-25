@@ -39,12 +39,13 @@ namespace webapi.locadora.Repositories
         {
             using (SqlConnection connection = new SqlConnection(StringConexao))
             {
-                string query = $"INSERT INTO Genero VALUES ('" + novoGenero.Nome + "')";
+                string query = $"INSERT INTO Genero VALUES (@Nome)";
 
                 connection.Open();
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@Nome", novoGenero.Nome);
                     command.ExecuteNonQuery();
                 }
             }
