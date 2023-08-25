@@ -21,9 +21,27 @@ namespace webapi.locadora.Repositories
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Atualiza um gênero através de um id passado pela url
+        /// </summary>
+        /// <param name="id">Id do gênero a ser alterado</param>
+        /// <param name="genero">Novo gênero com as alterações</param>
         public void AtualizarIdUrl(int id, GeneroDomain genero)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(StringConexao))
+            {
+                string query = "UPDATE Genero SET Nome = @NovoNome WHERE IdGenero = @Id";
+
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NovoNome", genero.Nome);
+                    command.Parameters.AddWithValue("@Id", id);
+                    command.ExecuteNonQuery();
+                }
+            }
+
         }
 
         public GeneroDomain BuscarPorId(int id)

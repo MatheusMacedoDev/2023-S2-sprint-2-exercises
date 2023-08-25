@@ -40,7 +40,7 @@ namespace webapi.locadora.Controllers
             {
                 return BadRequest(err.Message);
             }
-            
+
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace webapi.locadora.Controllers
                 _generoRepository.Cadastrar(genero);
 
                 return StatusCode(201);
-            } 
+            }
             catch (Exception err)
             {
                 return BadRequest(err.Message);
@@ -75,6 +75,26 @@ namespace webapi.locadora.Controllers
             {
                 _generoRepository.Deletar(id);
 
+                return StatusCode(200);
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
+
+        /// <summary>
+        /// Atualiza um gênero especificado por id na url da requisição
+        /// </summary>
+        /// <param name="id">Id do gênero a ser atualizado</param>
+        /// <param name="genero">Objeto do gênero com as novas informações</param>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        public IActionResult UpdateByIdUrl(int id, GeneroDomain genero)
+        {
+            try
+            {
+                _generoRepository.AtualizarIdUrl(id, genero);
                 return StatusCode(200);
             }
             catch (Exception err)
