@@ -50,9 +50,23 @@ namespace webapi.locadora.Repositories
             }
         }
 
+        /// <summary>
+        /// Deleta um gênero por seu id
+        /// </summary>
+        /// <param name="id">O id do gênero a ser deletado</param>
         public void Deletar(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(StringConexao))
+            {
+                string query = $"DELETE FROM Genero WHERE IdGenero = {id}";
+
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         /// <summary>

@@ -62,5 +62,25 @@ namespace webapi.locadora.Controllers
                 return BadRequest(err.Message);
             }
         }
+
+        /// <summary>
+        /// É o endpoint que deleta um gênero a partir do seu id
+        /// </summary>
+        /// <param name="id">O id do gênero a ser deletado</param>
+        /// <returns>A resposta da requisição</returns>
+        [HttpDelete]
+        public IActionResult Deletar(int id)
+        {
+            try
+            {
+                _generoRepository.Deletar(id);
+
+                return StatusCode(200);
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
     }
 }
