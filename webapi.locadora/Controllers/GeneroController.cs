@@ -68,7 +68,7 @@ namespace webapi.locadora.Controllers
         /// </summary>
         /// <param name="id">O id do gênero a ser deletado</param>
         /// <returns>A resposta da requisição</returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
         {
             try
