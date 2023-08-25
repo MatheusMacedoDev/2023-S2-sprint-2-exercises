@@ -9,7 +9,7 @@ namespace webapi.locadora.Domains
     {
         public int IdGenero { get; set; }
 
-        [Required(ErrorMessage = "O título do filme é obrigatório!")]
+        [Required(ErrorMessage = "O nome do gênero é obrigatório!")]
         public string? Nome { get; set; }
     }
 }
