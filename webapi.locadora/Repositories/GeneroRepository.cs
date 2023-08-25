@@ -59,12 +59,13 @@ namespace webapi.locadora.Repositories
         {
             using (SqlConnection connection = new SqlConnection(StringConexao))
             {
-                string query = $"DELETE FROM Genero WHERE IdGenero = {id}";
+                string query = $"DELETE FROM Genero WHERE IdGenero = @Id";
 
                 connection.Open();
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@Id", id);
                     command.ExecuteNonQuery();
                 }
             }
