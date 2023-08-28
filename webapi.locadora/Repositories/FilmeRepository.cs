@@ -95,9 +95,26 @@ namespace webapi.locadora.Repositories
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Registra um novo filme
+        /// </summary>
+        /// <param name="filme">Filme a ser registrado</param>
         public void Registrar(FilmeDomain filme)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(StringConexao))
+            {
+                string query = "INSERT INTO Filme VALUES (@IdGenero, @Titulo)";
+
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdGenero", filme.IdGenero);
+                    command.Parameters.AddWithValue("@Titulo", filme.Titulo);
+
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

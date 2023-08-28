@@ -59,5 +59,25 @@ namespace webapi.locadora.Controllers
                 return BadRequest(err.Message);
             }
         }
+
+        /// <summary>
+        /// É o endpoint que permite criar um novo filme
+        /// </summary>
+        /// <param name="filme">Objeto com os dados do novo filme</param>
+        /// <returns>Resposta ao usuário</returns>
+        [HttpPost]
+        public IActionResult Registrar(FilmeDomain filme)
+        {
+            try
+            {
+                _filmeRepository.Registrar(filme);
+
+                return StatusCode(201);
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
     }
 }
