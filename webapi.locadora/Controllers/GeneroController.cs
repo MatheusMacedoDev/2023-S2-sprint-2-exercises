@@ -44,6 +44,26 @@ namespace webapi.locadora.Controllers
         }
 
         /// <summary>
+        /// É o endpoint que busca um gênero através de seu id
+        /// </summary>
+        /// <param name="id">Id do gênero buscado</param>
+        /// <returns>Retorna o gênero encontrado</returns>
+        [HttpGet("{id}")]
+        public IActionResult ListarPeloId(int id)
+        {
+            try
+            {
+                GeneroDomain generoEncontrado = _generoRepository.BuscarPorId(id);
+
+                return Ok(generoEncontrado);
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
+
+        /// <summary>
         /// É o endpoint do cadastro de gêneros
         /// </summary>
         /// <param name="genero">Objeto do domínio do gênero</param>

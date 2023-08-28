@@ -36,17 +36,47 @@ namespace webapi.locadora.Repositories
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@NovoNome", genero.Nome);
                     command.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue("@NovoNome", genero.Nome);
                     command.ExecuteNonQuery();
                 }
             }
 
         }
 
+        /// <summary>
+        /// Busca um gênero através de seu id
+        /// </summary>
+        /// <param name="id">Id do gênero</param>
+        /// <returns>O gênero encontrado</returns>
         public GeneroDomain BuscarPorId(int id)
         {
-            throw new NotImplementedException();
+            GeneroDomain generoEncontrado = new GeneroDomain();
+
+            using (SqlConnection connection = new SqlConnection(StringConexao))
+            {
+                string query = "SELECT IdGenero, Nome from Genero WHERE IdGenero = @Id";
+
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+
+                    if (sqlDataReader.Read())
+                    {
+                        generoEncontrado = new GeneroDomain()
+                        {
+                            IdGenero = Convert.ToInt32(sqlDataReader["IdGenero"]),
+                            Nome = sqlDataReader["Nome"].ToString()
+                        };
+                    }
+                }
+            }
+
+            return generoEncontrado;
         }
 
         /// <summary>
