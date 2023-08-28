@@ -79,5 +79,25 @@ namespace webapi.locadora.Controllers
                 return BadRequest(err.Message);
             }
         }
+
+        /// <summary>
+        /// É o endpoint que permite deletar um filme
+        /// </summary>
+        /// <param name="id">Id do filme a ser deletado</param>
+        /// <returns>Resposta ao usuário</returns>
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                _filmeRepository.Deletar(id);
+
+                return NoContent();
+            }
+            catch (Exception err)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

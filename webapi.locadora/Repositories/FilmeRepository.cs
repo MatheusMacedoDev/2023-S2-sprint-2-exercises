@@ -90,9 +90,25 @@ namespace webapi.locadora.Repositories
             return filmes;
         }
 
+        /// <summary>
+        /// Deleta um filme por seu id
+        /// </summary>
+        /// <param name="id">O id do filme a ser deletado</param>
         public void Deletar(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(StringConexao))
+            {
+                string query = "DELETE Filme WHERE IdFilme = @Id";
+
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         /// <summary>
