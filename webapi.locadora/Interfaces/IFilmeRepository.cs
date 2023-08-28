@@ -4,8 +4,6 @@ namespace webapi.locadora.Interfaces
 {
     public interface IFilmeRepository
     {
-        // Crud
-
         /// <summary>
         /// Registra um novo filme
         /// </summary>
