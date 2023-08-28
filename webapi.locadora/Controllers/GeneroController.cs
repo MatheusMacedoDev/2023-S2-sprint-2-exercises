@@ -55,6 +55,11 @@ namespace webapi.locadora.Controllers
             {
                 GeneroDomain generoEncontrado = _generoRepository.BuscarPorId(id);
 
+                if (generoEncontrado == null)
+                {
+                    return NotFound("Não há nenhum gênero com este id");
+                }
+
                 return Ok(generoEncontrado);
             }
             catch (Exception err)

@@ -68,7 +68,7 @@ namespace webapi.locadora.Repositories
         /// <returns>O gênero encontrado</returns>
         public GeneroDomain BuscarPorId(int id)
         {
-            GeneroDomain generoEncontrado = new GeneroDomain();
+            GeneroDomain generoEncontrado = null;
 
             using (SqlConnection connection = new SqlConnection(StringConexao))
             {
