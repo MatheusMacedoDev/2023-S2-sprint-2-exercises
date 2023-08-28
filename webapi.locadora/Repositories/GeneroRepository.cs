@@ -16,9 +16,26 @@ namespace webapi.locadora.Repositories
         /// </summary>
         private string StringConexao = "Data Source = NOTE17-S14; Initial Catalog = Locadora; User Id = sa; Pwd = Senai@134";
 
+        /// <summary>
+        /// Atualiza um gênero através do id advindo unicamente pela url
+        /// </summary>
+        /// <param name="id">Id do gênero</param>
+        /// <param name="genero">Objeto atualizado do gênero</param>
         public void AtualizarIdCorpo(GeneroDomain genero)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(StringConexao)) 
+            {
+                string query = "UPDATE Genero SET Nome = @NovoNome WHERE IdGenero = @Id";
+
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", genero.IdGenero);
+                    command.Parameters.AddWithValue("@NovoNome", genero.Nome);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         /// <summary>

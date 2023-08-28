@@ -104,11 +104,31 @@ namespace webapi.locadora.Controllers
         }
 
         /// <summary>
+        /// É o endpoint que atualiza os dados de um determinado gênero através do id fornecido pelo corpo da requisição
+        /// </summary>
+        /// <param name="genero">Um objeto com o novo dado de um gênero</param>
+        /// <returns>Resposta ao usuário</returns>
+        [HttpPut]
+        public IActionResult UpdadeByIdBody(GeneroDomain genero)
+        {
+            try
+            {
+                _generoRepository.AtualizarIdCorpo(genero);
+
+                return NoContent();
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
+
+        /// <summary>
         /// Atualiza um gênero especificado por id na url da requisição
         /// </summary>
         /// <param name="id">Id do gênero a ser atualizado</param>
         /// <param name="genero">Objeto do gênero com as novas informações</param>
-        /// <returns></returns>
+        /// <returns>Resposta ao usuário</returns>
         [HttpPut("{id}")]
         public IActionResult UpdateByIdUrl(int id, GeneroDomain genero)
         {
