@@ -18,9 +18,41 @@ namespace webapi.locadora.Repositories
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Busca um filme por id
+        /// </summary>
+        /// <param name="id">Id do filme a ser buscado</param>
+        /// <returns>Um objecto que representa a entidade filme</returns>
         public FilmeDomain BuscarPorId(int id)
         {
-            throw new NotImplementedException();
+
+            using (SqlConnection connection = new SqlConnection(StringConexao))
+            {
+                string query = "SELECT IdFilme, IdGenero, Titulo FROM Filme WHERE IdFilme = @Id";
+
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", id);
+                    
+                    SqlDataReader reader= command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        FilmeDomain filme = new FilmeDomain()
+                        {
+                            IdFilme = Convert.ToInt32(reader["IdFilme"]),
+                            IdGenero = Convert.ToInt32(reader["IdGenero"]),
+                            Titulo = reader["Titulo"].ToString()
+                        };
+
+                        return filme;
+                    }
+                }
+            }
+
+            return null;
         }
 
         /// <summary>
