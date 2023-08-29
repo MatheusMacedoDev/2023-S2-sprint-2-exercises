@@ -8,14 +8,51 @@ namespace webapi.locadora.Repositories
     {
         private string StringConexao = "Data Source = NOTE17-S14; Initial Catalog = Locadora; User Id = sa; Pwd = Senai@134";
 
+        /// <summary>
+        /// Atualiza um filme através do id advindo unicamente pela url
+        /// </summary>
+        /// <param name="id">Id do filme</param>
+        /// <param name="genero">Objeto atualizado do filme</param>
         public void AtualizarIdUrl(int id, FilmeDomain filme)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(StringConexao))
+            {
+                string query = "UPDATE Filme SET IdGenero = @NovoIdGenero, Titulo = @NovoTitulo WHERE IdFilme = @Id";
+
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NovoIdGenero", filme.IdGenero);
+                    command.Parameters.AddWithValue("@NovoTitulo", filme.Titulo);
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
+        /// <summary>
+        /// Atualiza o filme passando o id pelo corpo
+        /// </summary>
+        /// <param name="filmeAtualizado">O objeto do filme já atualizado</param>
         public void AtualizarPeloCorpo(FilmeDomain filmeAtualizado)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(StringConexao))
+            {
+                string query = "UPDATE Filme SET IdGenero = @NovoIdGenero, Titulo = @NovoTitulo WHERE IdFilme = @Id";
+
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NovoIdGenero", filmeAtualizado.IdGenero);
+                    command.Parameters.AddWithValue("@NovoTitulo", filmeAtualizado.Titulo);
+                    command.Parameters.AddWithValue("@Id", filmeAtualizado.IdFilme);
+
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         /// <summary>

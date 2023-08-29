@@ -99,5 +99,46 @@ namespace webapi.locadora.Controllers
                 return BadRequest();
             }
         }
+
+        /// <summary>
+        /// É o endpoint que permite atualizar um filme através do id passado pela url
+        /// </summary>
+        /// <param name="id">Id do filme</param>
+        /// <param name="filmeAtualizado">Objeto com dados atualizados</param>
+        /// <returns>Resposta ao usuário</returns>
+        [HttpPut("{id}")]
+        public IActionResult UpdateByIdUrl(int id, FilmeDomain filmeAtualizado)
+        {
+            try
+            {
+                _filmeRepository.AtualizarIdUrl(id, filmeAtualizado);
+
+                return NoContent();
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
+
+        /// <summary>
+        /// É o endpoint que faz a atualização de um filme através dos dados passados no corpo da requisição
+        /// </summary>
+        /// <param name="filmeAtualizado">Objeto do filme com dados atualizados</param>
+        /// <returns>Resposta ao usuário</returns>
+        [HttpPut]
+        public IActionResult UpdateByIdBody(FilmeDomain filmeAtualizado)
+        {
+            try
+            {
+                _filmeRepository.AtualizarPeloCorpo(filmeAtualizado);
+
+                return NoContent();
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
     }
 }
