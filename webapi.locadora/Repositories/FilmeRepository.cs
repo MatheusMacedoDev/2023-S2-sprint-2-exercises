@@ -65,7 +65,9 @@ namespace webapi.locadora.Repositories
 
             using (SqlConnection connection = new SqlConnection(StringConexao))
             {
-                string query = "SELECT IdFilme, IdGenero, Titulo FROM Filme WHERE IdFilme = @Id";
+                string query = "SELECT IdFilme, Titulo, Genero.IdGenero AS IdGenero, Genero.Nome AS NomeGenero FROM Filme " +
+                               "JOIN Genero ON Filme.IdGenero = Genero.IdGenero " +
+                               "WHERE IdFilme = @Id";
 
                 connection.Open();
 
@@ -80,8 +82,12 @@ namespace webapi.locadora.Repositories
                         FilmeDomain filme = new FilmeDomain()
                         {
                             IdFilme = Convert.ToInt32(reader["IdFilme"]),
-                            IdGenero = Convert.ToInt32(reader["IdGenero"]),
-                            Titulo = reader["Titulo"].ToString()
+                            Titulo = reader["Titulo"].ToString(),
+                            Genero = new GeneroDomain()
+                            {
+                                IdGenero = Convert.ToInt32(reader["IdGenero"]),
+                                Nome = reader["NomeGenero"].ToString()
+                            }
                         };
 
                         return filme;
@@ -102,7 +108,8 @@ namespace webapi.locadora.Repositories
 
             using (SqlConnection connection = new SqlConnection(StringConexao))
             {
-                string query = "SELECT IdFilme, IdGenero, Titulo FROM Filme";
+                string query = "SELECT IdFilme, Titulo, Genero.IdGenero AS IdGenero, Genero.Nome AS NomeGenero FROM Filme " +
+                               "JOIN Genero ON Filme.IdGenero = Genero.IdGenero";
 
                 connection.Open();
 
@@ -115,8 +122,12 @@ namespace webapi.locadora.Repositories
                         FilmeDomain filme = new FilmeDomain()
                         {
                             IdFilme = Convert.ToInt32(reader["IdFilme"]),
-                            IdGenero = Convert.ToInt32(reader["IdGenero"]),
-                            Titulo = reader["Titulo"].ToString()
+                            Titulo = reader["Titulo"].ToString(),
+                            Genero = new GeneroDomain()
+                            {
+                                IdGenero = Convert.ToInt32(reader["IdGenero"]),
+                                Nome = reader["NomeGenero"].ToString()
+                            }
                         };
 
                         filmes.Add(filme);
