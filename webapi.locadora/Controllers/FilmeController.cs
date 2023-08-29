@@ -96,7 +96,7 @@ namespace webapi.locadora.Controllers
             }
             catch (Exception err)
             {
-                return BadRequest();
+                return BadRequest(err.Message);
             }
         }
 
