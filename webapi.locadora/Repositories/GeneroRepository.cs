@@ -55,6 +55,7 @@ namespace webapi.locadora.Repositories
                 {
                     command.Parameters.AddWithValue("@Id", id);
                     command.Parameters.AddWithValue("@NovoNome", genero.Nome);
+
                     command.ExecuteNonQuery();
                 }
             }

@@ -40,7 +40,6 @@ namespace webapi.locadora.Controllers
             {
                 return BadRequest(err.Message);
             }
-
         }
 
         /// <summary>
