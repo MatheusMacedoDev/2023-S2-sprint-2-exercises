@@ -82,6 +82,7 @@ namespace webapi.locadora.Repositories
                         FilmeDomain filme = new FilmeDomain()
                         {
                             IdFilme = Convert.ToInt32(reader["IdFilme"]),
+                            IdGenero = Convert.ToInt32(reader["IdGenero"]),
                             Titulo = reader["Titulo"].ToString(),
                             Genero = new GeneroDomain()
                             {
@@ -122,6 +123,7 @@ namespace webapi.locadora.Repositories
                         FilmeDomain filme = new FilmeDomain()
                         {
                             IdFilme = Convert.ToInt32(reader["IdFilme"]),
+                            IdGenero = Convert.ToInt32(reader["IdGenero"]),
                             Titulo = reader["Titulo"].ToString(),
                             Genero = new GeneroDomain()
                             {
