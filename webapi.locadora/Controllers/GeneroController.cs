@@ -118,15 +118,29 @@ namespace webapi.locadora.Controllers
         {
             try
             {
-                _generoRepository.AtualizarIdCorpo(genero);
+                GeneroDomain generoBuscado = _generoRepository.BuscarPorId(genero.IdGenero);
 
-                return NoContent();
+                if (generoBuscado != null)
+                {
+                    try
+                    {
+                        _generoRepository.AtualizarIdCorpo(genero);
+
+                        return StatusCode(204);
+                    }
+                    catch (Exception err)
+                    {
+                        return BadRequest(err.Message);
+                    }
+                }
+
+                return NotFound("O gênero a ser atualizado não existe.");
             }
             catch (Exception err)
             {
                 return BadRequest(err.Message);
             }
-        } 
+        }
 
         /// <summary>
         /// Atualiza um gênero especificado por id na url da requisição
@@ -139,8 +153,23 @@ namespace webapi.locadora.Controllers
         {
             try
             {
-                _generoRepository.AtualizarIdUrl(id, genero);
-                return StatusCode(200);
+                GeneroDomain generoBuscado = _generoRepository.BuscarPorId(id);
+
+                if (generoBuscado != null)
+                {
+                    try
+                    {
+                        _generoRepository.AtualizarIdUrl(id, genero);
+
+                        return StatusCode(204);
+                    }
+                    catch (Exception err)
+                    {
+                        return BadRequest(err.Message);
+                    }
+                }
+
+                return NotFound("O gênero a ser atualizado não existe.");
             }
             catch (Exception err)
             {
