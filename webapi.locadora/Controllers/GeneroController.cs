@@ -40,6 +40,7 @@ namespace webapi.locadora.Controllers
             {
                 return BadRequest(err.Message);
             }
+
         }
 
         /// <summary>
@@ -125,14 +126,14 @@ namespace webapi.locadora.Controllers
             {
                 return BadRequest(err.Message);
             }
-        }
+        } 
 
         /// <summary>
         /// Atualiza um gênero especificado por id na url da requisição
         /// </summary>
         /// <param name="id">Id do gênero a ser atualizado</param>
         /// <param name="genero">Objeto do gênero com as novas informações</param>
-        /// <returns>Resposta ao usuário</returns>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult UpdateByIdUrl(int id, GeneroDomain genero)
         {
