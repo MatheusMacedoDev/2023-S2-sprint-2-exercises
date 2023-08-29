@@ -111,9 +111,24 @@ namespace webapi.locadora.Controllers
         {
             try
             {
-                _filmeRepository.AtualizarIdUrl(id, filmeAtualizado);
+                FilmeDomain filmeBuscado = _filmeRepository.BuscarPorId(id);
 
-                return NoContent();
+                if (filmeBuscado != null)
+                {
+                    try
+                    {
+                        _filmeRepository.AtualizarIdUrl(id, filmeAtualizado);
+
+                        return NoContent();
+                    }
+                    catch (Exception err)
+                    {
+                        return BadRequest();
+                    }
+
+                }
+                
+                return NotFound("O filme a ser atualizado não existe.");
             }
             catch (Exception err)
             {
@@ -131,9 +146,23 @@ namespace webapi.locadora.Controllers
         {
             try
             {
-                _filmeRepository.AtualizarPeloCorpo(filmeAtualizado);
+                FilmeDomain filmeBuscado = _filmeRepository.BuscarPorId(filmeAtualizado.IdFilme);
 
-                return NoContent();
+                if (filmeBuscado != null)
+                {
+                    try
+                    {
+                        _filmeRepository.AtualizarPeloCorpo(filmeAtualizado);
+
+                        return NoContent();
+                    }
+                    catch (Exception err)
+                    {
+                        return BadRequest();
+                    }
+                }
+
+                return NotFound("O filme a ser atualizado não existe.");
             }
             catch (Exception err)
             {
