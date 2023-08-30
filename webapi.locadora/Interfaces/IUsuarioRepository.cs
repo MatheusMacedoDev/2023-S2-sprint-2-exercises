@@ -13,6 +13,6 @@ namespace webapi.locadora.Interfaces
         /// <param name="email">O e-mail do usuário</param>
         /// <param name="senha">A senha do usuário</param>
         /// <returns>Os dados do usuário em um objeto</returns>
-        UsuarioDomain login(string email, string senha);
+        UsuarioDomain Login(string email, string senha);
     }
 }

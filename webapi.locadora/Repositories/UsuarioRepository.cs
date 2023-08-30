@@ -14,12 +14,12 @@ namespace webapi.locadora.Repositories
         /// <param name="email">O e-mail do usuário</param>
         /// <param name="senha">A senha do usuário</param>
         /// <returns>Os dados do usuário em um objeto</returns>
-        public UsuarioDomain login(string email, string senha)
+        public UsuarioDomain Login(string email, string senha)
         {
             using (SqlConnection connection = new SqlConnection(StringConexao))
             {
-                string query = "SELECT IdUsuario, Nome, Email, Senha, IsAdmin FROM Usuario " +
-                                "WHERE Email = @Email AND Senha = @Senha";
+                string query = "SELECT Id, Nome, Email, Senha, IsAdmin FROM Usuario " +
+                               "WHERE Email = @Email AND Senha = @Senha";
 
                 connection.Open();
 
@@ -34,9 +34,10 @@ namespace webapi.locadora.Repositories
                     {
                         UsuarioDomain usuarioEncontrado = new UsuarioDomain()
                         {
-                            IdUsuario = Convert.ToInt32(reader["IdUsuario"]),
+                            IdUsuario = Convert.ToInt32(reader["Id"]),
                             Nome = reader["Nome"].ToString(),
                             Email = reader["Email"].ToString(),
+                            Senha = reader["Senha"].ToString(),
                             IsAdmin = Convert.ToBoolean(reader["IsAdmin"])
                         };
 
