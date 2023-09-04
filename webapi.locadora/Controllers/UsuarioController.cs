@@ -9,6 +9,7 @@ namespace webapi.locadora.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
     public class UsuarioController : ControllerBase
     {
         private IUsuarioRepository _usuarioRepository;

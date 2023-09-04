@@ -18,7 +18,7 @@ namespace webapi.locadora.Repositories
         {
             using (SqlConnection connection = new SqlConnection(StringConexao))
             {
-                string query = "SELECT Id, Nome, Email, Senha, IsAdmin FROM Usuario " +
+                string query = "SELECT Id, Nome, Email, IsAdmin FROM Usuario " +
                                "WHERE Email = @Email AND Senha = @Senha";
 
                 connection.Open();
@@ -37,7 +37,6 @@ namespace webapi.locadora.Repositories
                             IdUsuario = Convert.ToInt32(reader["Id"]),
                             Nome = reader["Nome"].ToString(),
                             Email = reader["Email"].ToString(),
-                            Senha = reader["Senha"].ToString(),
                             IsAdmin = Convert.ToBoolean(reader["IsAdmin"])
                         };
 
