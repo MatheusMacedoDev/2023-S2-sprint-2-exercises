@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using webapi.locadora.Domains;
 using webapi.locadora.Interfaces;
@@ -10,6 +11,7 @@ namespace webapi.locadora.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
+    [Authorize]
     public class GeneroController : ControllerBase
     {
         private IGeneroRepository _generoRepository;
@@ -74,6 +76,7 @@ namespace webapi.locadora.Controllers
         /// <param name="genero">Objeto do domínio do gênero</param>
         /// <returns>Resposta ao usuário</returns>
         [HttpPost]
+        [Authorize(Roles = "True")]
         public IActionResult Cadastrar(GeneroDomain genero)
         {
             try
@@ -94,6 +97,7 @@ namespace webapi.locadora.Controllers
         /// <param name="id">O id do gênero a ser deletado</param>
         /// <returns>A resposta da requisição</returns>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "True")]
         public IActionResult Deletar(int id)
         {
             try
@@ -114,6 +118,7 @@ namespace webapi.locadora.Controllers
         /// <param name="genero">Um objeto com o novo dado de um gênero</param>
         /// <returns>Resposta ao usuário</returns>
         [HttpPut]
+        [Authorize(Roles = "True")]
         public IActionResult UpdadeByIdBody(GeneroDomain genero)
         {
             try
@@ -149,6 +154,7 @@ namespace webapi.locadora.Controllers
         /// <param name="genero">Objeto do gênero com as novas informações</param>
         /// <returns></returns>
         [HttpPut("{id}")]
+        [Authorize(Roles = "True")]
         public IActionResult UpdateByIdUrl(int id, GeneroDomain genero)
         {
             try
