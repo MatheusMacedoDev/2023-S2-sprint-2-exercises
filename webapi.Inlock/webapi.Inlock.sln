@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webapi.Inlock", "webapi.Inlock.csproj", "{B958F8C3-5C3A-444C-8BE2-3E16D5FD48FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B958F8C3-5C3A-444C-8BE2-3E16D5FD48FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B958F8C3-5C3A-444C-8BE2-3E16D5FD48FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B958F8C3-5C3A-444C-8BE2-3E16D5FD48FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B958F8C3-5C3A-444C-8BE2-3E16D5FD48FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB384027-79D8-47ED-8E44-8C4E7D47BCEA}
+	EndGlobalSection
+EndGlobal
