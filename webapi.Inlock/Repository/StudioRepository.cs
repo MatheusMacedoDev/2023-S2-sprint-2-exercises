@@ -16,12 +16,26 @@ namespace webapi.Inlock.Repository
 
         public void Create(Studio newStudio)
         {
-            throw new NotImplementedException();
+            newStudio.Id = Guid.NewGuid();
+
+            context.Studios.Add(newStudio);
+            context.SaveChanges();
+        }
+
+        public void Delete(Guid id)
+        {
+            Studio findedStudio = FindById(id);
+
+            if (findedStudio != null)
+            {
+                context.Studios.Remove(findedStudio);
+                context.SaveChanges();
+            }
         }
 
         public Studio FindById(Guid id)
         {
-            throw new NotImplementedException();
+            return context.Studios.FirstOrDefault(studio => studio.Id == id)!;
         }
 
         public List<Studio> ListAll()
@@ -36,7 +50,28 @@ namespace webapi.Inlock.Repository
 
         public void Update(Guid id, Studio newStudioData)
         {
-            throw new NotImplementedException();
+            Studio findedStudio = FindById(id);
+
+            if (findedStudio != null)
+            {
+                findedStudio.Name = newStudioData.Name;
+
+                context.Studios.Update(findedStudio);
+                context.SaveChanges();
+            }
+        }
+
+        public void UpdateWithBody(Studio newStudio)
+        {
+            Studio findedStudio = FindById(newStudio.Id);
+
+            if (findedStudio != null)
+            {
+                findedStudio.Name = newStudio.Name;
+
+                context.Studios.Update(findedStudio);
+                context.SaveChanges();
+            }
         }
     }
 }

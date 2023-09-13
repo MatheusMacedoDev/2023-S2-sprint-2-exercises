@@ -18,6 +18,21 @@ namespace webapi.Inlock.Controllers
             _studioRepository = new StudioRepository();
         }
 
+        [HttpGet("{id}")]
+        public IActionResult FindById(Guid id)
+        {
+            try
+            {
+                Studio findedStudio = _studioRepository.FindById(id);
+
+                return Ok(findedStudio);
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
+
         [HttpGet]
         public IActionResult ListAll()
         {
@@ -41,6 +56,66 @@ namespace webapi.Inlock.Controllers
                 List<Studio> studios = _studioRepository.ListAllWithGames();
 
                 return Ok(studios);
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Create(Studio newStudio)
+        {
+            try
+            {
+                _studioRepository.Create(newStudio);
+
+                return StatusCode(201);
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                _studioRepository.Delete(id);
+
+                return StatusCode(202);
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(Guid id, Studio newStudio)
+        {
+            try
+            {
+                _studioRepository.Update(id, newStudio);
+
+                return StatusCode(204);
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
+
+        [HttpPut]
+        public IActionResult UpdateWithBody(Studio newStudio)
+        {
+            try
+            {
+                _studioRepository.UpdateWithBody(newStudio);
+
+                return StatusCode(204);
             }
             catch (Exception err)
             {
