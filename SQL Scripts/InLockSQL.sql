@@ -1,6 +1,7 @@
 CREATE DATABASE inlock_games_db_morning;
 
 USE inlock_games_db_morning;
+USE inlock_games_db_morning_auto;
 
 CREATE TABLE Studio (
 	Id UNIQUEIDENTIFIER PRIMARY KEY,
@@ -42,10 +43,12 @@ SELECT * FROM Game;
 INSERT INTO UserType
 VALUES (NEWID(), 'Comum'),(NEWID(), 'Administrador');
 
+DELETE FROM UserType;
+
 SELECT * FROM UserType;
 
 INSERT INTO [User]
-VALUES (NEWID(), 'E55A7F11-F142-4588-B2E5-9A5BF723F06F','cliente@cliente.com','cliente'),
-       (NEWID(), '33C6CB5C-31B2-4A58-90D2-F8B6C3684663','admin@admin.com','admin');
+VALUES (NEWID(), 'A8F4CE9F-A637-49F7-8D32-A385B0CAC4C5','cliente@cliente.com','cliente'),
+       (NEWID(), '6DEA218E-DFBE-4433-8DA4-B1908AD3FA64','admin@admin.com','admin');
 
 SELECT * FROM [User];
