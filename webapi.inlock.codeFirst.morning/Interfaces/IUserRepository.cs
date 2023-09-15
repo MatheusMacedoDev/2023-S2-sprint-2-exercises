@@ -5,6 +5,6 @@ namespace webapi.inlock.codeFirst.morning.Interfaces
     public interface IUserRepository
     {
         void Register(User user);
-        User Login(string email, string password);
+        User FindUser(string email, string password);
     }
 }

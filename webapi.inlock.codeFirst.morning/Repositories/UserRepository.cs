@@ -14,13 +14,13 @@ namespace webapi.inlock.codeFirst.morning.Repositories
             _context= new InlockContext();
         }
 
-        public User Login(string email, string password)
+        public User FindUser(string email, string password)
         {
-            User findedUser = _context.Users.FirstOrDefault(user => user.Email == email);
+            User findedUser = _context.Users.FirstOrDefault(user => user.Email == email)!;
 
             if (findedUser != null)
             {
-                if (Cryptography.IsEqualHashes(password, findedUser.Password))
+                if (Cryptography.IsEqualHashes(password, findedUser.Password!))
                 {
                     return findedUser;
                 }

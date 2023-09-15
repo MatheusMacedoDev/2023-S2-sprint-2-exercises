@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using webapi.inlock.codeFirst.morning.Domain;
 using webapi.inlock.codeFirst.morning.Interfaces;
 using webapi.inlock.codeFirst.morning.Repositories;
@@ -32,20 +31,5 @@ namespace webapi.inlock.codeFirst.morning.Controllers
                 return BadRequest(err.Message);
             }
         }
-
-       [HttpPost("Login")]
-       public IActionResult Login(User userData)
-       {
-            try
-            {
-                User findedUser = _userRepository.Login(userData.Email!, userData.Password!);
-
-                return Ok(findedUser);
-            }
-            catch (Exception err)
-            {
-                return BadRequest(err.Message);
-            }
-       }
     }
 }
